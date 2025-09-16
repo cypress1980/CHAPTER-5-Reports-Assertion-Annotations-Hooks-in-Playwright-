@@ -13,15 +13,10 @@ def test_Login():
         # Locate the login button
         login_button = page.locator('button[id="loginBtn"]')
         
-        #expect(page.get_by_placeholder("Email")).not_to_have_value("wrong@demo.com")
-        
-        # Assert button is visible and enabled
-        expect(login_button).to_be_visible()
-        expect(login_button).to_be_enabled()
-        
         # Click the login button
         login_button.click()
-        
-        # Additional steps or assertions can follow here
-        
+        page.get_by_role("link", name="Shop Now", exact=True).first.click()
+        # Assert specific count of products
+    
+        expect(page.locator(".product-item")).to_have_count(20)
         browser.close()
